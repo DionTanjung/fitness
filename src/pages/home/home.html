@@ -1,14 +1,32 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="danger">
     <ion-title>
-      Ionic Blank
+      Home
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="container" disable-scroll>
+  <div class="menu-container" (click)="openMenu(1)">
+      <img class="img" src="assets/imgs/aeg-slide-01.jpg"/>
+      <div class="menu-item"> 
+          <!-- <div class=" coursemenuicon1"  ng-click="gotosite(0)">W</div> -->
+          <p class="menu-title">Workout</p>
+      </div>
+       
+  </div>
+  <div class="menu-container" (click)="openMenu(2)">
+      <img class="img" src="assets/imgs/house_PNG26.png"/>
+      <div class="menu-item"> 
+          <!-- <div class=" coursemenuicon2"  ng-click="gotosite(0)">C</div> -->
+          <p class="menu-title">History</p> 
+      </div>
+  </div>
+  <div class="menu-container" (click)="openMenu(3)">
+    <img class="img" src="assets/imgs/infrared-grill_discover.jpg"/>
+    <div class="menu-item"> 
+        <!-- <div class=" coursemenuicon3"  ng-click="gotosite(0)">C</div> -->
+        <p class="menu-title">Report</p> 
+    </div>
+  </div>
 </ion-content>

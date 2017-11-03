@@ -1,3 +1,49 @@
 page-home {
+    .container{
+        height: 100%;
+        background-color: #C5C5C5;
+    }
+    
+    .menu-container{
+        height: 28.80%;
+        position: relative;
+        margin: 5%;
+    }
 
+    .img{
+        border: 1px solid white;
+        width: 100%;
+        height: 100%;
+        border-radius: 5%;
+    }
+
+    // .menu-container-2{
+    //     margin-top: 5%;
+    //     height: 48%;
+    //     position: relative;
+    // }
+      
+    .menu-item{
+        // padding-top: 20px;
+        margin: 0;
+        position: absolute;
+        // top: 50%;
+        // left: 50%;
+        bottom: 0;
+        // margin-right: -50%;
+        // transform: translate(-50%, -50%);
+    }
+
+    .menu-title {
+        font-family: "Comic Sans MS";
+        color: white;
+        background-color: #5996FF;
+        padding: 8px;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 18px;
+        text-align: center;
+    }
 }
