@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { IonicPage, NavController, ModalController , NavParams } from 'ionic-angular';
+import { ModalContentPage } from './modal';
 /**
  * Generated class for the LoginPage page.
  *
@@ -14,20 +15,34 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  form={
-    user:'',
-    password:''
-  }
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  form : FormGroup;
+  url:string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,  public formBuilder: FormBuilder) {
+    this.form = formBuilder.group({
+      username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')])],
+      password: ['', Validators.compose([Validators.required])]
+    });
   }
 
-  loginForm(){
-    console.log(this.form);
-    this.navCtrl.push('HomePage');
+  loginForm(value:any){
+    if(this.form.valid) {
+      console.log(value);
+    }
+    // this.navCtrl.push('HomePage');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  public registerModal(){
+    let modal = this.modalCtrl.create(ModalContentPage);
+    modal.present();
+  }  
+
+
+
 }
+
+

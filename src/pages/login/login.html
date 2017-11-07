@@ -13,32 +13,38 @@
   </div>
   <div class="login-box">
 
-    <form (ngSubmit)="loginForm()">
+    <form [formGroup]="form" (ngSubmit)="loginForm(form.value)">
       <ion-row>
         <ion-col>
             <ion-list>
-                
-                  <ion-item>
+                  <ion-item [ngClass]="{'error-border':!form.controls.username.valid && form.controls.username.touched}">
                     <ion-label floating>Username</ion-label>
-                    <ion-input type="text" [(ngModel)]="form.user" name="username"></ion-input>
+                    <ion-input type="text" formControlName="username"></ion-input>
                   </ion-item>
-                
-                  <ion-item>
+                  <ion-item *ngIf="form.controls.username.hasError('required') && form.controls.username.touched">
+                    <p>Sorry, field username is required!</p>
+                </ion-item>
+
+                  <ion-item [ngClass]="{'error-border':!form.controls.password.valid && form.controls.password.touched}">
                     <ion-label floating>Password</ion-label>
-                    <ion-input type="password" [(ngModel)]="form.password" name="password"></ion-input>
+                    <ion-input type="password" formControlName="password"></ion-input>
                   </ion-item>
-                
+                 <ion-item *ngIf="form.controls.password.hasError('required') && form.controls.password.touched">
+                    <p>Sorry, field password is required!</p>
+                </ion-item>
+
                 </ion-list>
         </ion-col>
       </ion-row>
       
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" >Login</button>
-          <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
+          <button ion-button class="submit-btn" full [disabled]="!form.valid" type="submit" >Login</button>
         </ion-col>
       </ion-row>
       
     </form>
+    <button ion-button class="register-btn" block clear (click)="registerModal()">Create New Account</button>
+    
   </div>
 </ion-content>
