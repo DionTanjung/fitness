@@ -9,6 +9,8 @@ import { LoginPage } from '../pages/login/login';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ModalContentPage } from '../pages/login/modal';
 
+import { CouchbaseLite } from '@ionic-native/couchbase-lite';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -29,7 +31,8 @@ import { ModalContentPage } from '../pages/login/modal';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    CouchbaseLite
   ]
 })
 export class AppModule {}
