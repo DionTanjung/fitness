@@ -29,7 +29,7 @@ export class LoginPage {
     if(this.form.valid) {
       console.log(value);
     }
-    // this.navCtrl.push('HomePage');
+    this.navCtrl.push('HomePage');
   }
 
   ionViewDidLoad() {

@@ -14,5 +14,19 @@
 
 
 <ion-content padding>
-
+  <ion-fab bottom right >
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <!-- <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button> -->
+      <button ion-fab>Chest</button>
+      <button ion-fab>Back</button>
+      <button ion-fab>Abs</button>
+    </ion-fab-list>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="registerModal()">Leg</button>
+      <button ion-fab>Arm</button>
+      <button ion-fab>Cardio</button>
+    </ion-fab-list>
+    
+  </ion-fab>
 </ion-content>

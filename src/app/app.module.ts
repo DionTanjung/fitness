@@ -8,12 +8,14 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ModalContentPage } from '../pages/login/modal';
+import { ModalWorkOutPage } from '../pages/workout/modal';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    ModalContentPage
+    ModalContentPage,
+    ModalWorkOutPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { ModalContentPage } from '../pages/login/modal';
   entryComponents: [
     MyApp,
     LoginPage,
-    ModalContentPage
+    ModalContentPage,
+    ModalWorkOutPage
   ],
   providers: [
     StatusBar,
