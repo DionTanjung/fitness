@@ -28,3 +28,12 @@ Substitute ios for android if not on a Mac.
 =======
 # JD_Fitness
 >>>>>>> 3978836ba4140ad5be231ae88f4ec140fad51c2c
+
+
+>>TEAMJD README
+1. using pouchDB
+    a. instal typings
+        $ npm install typings -g
+    b. instal pouchDB adapter
+        $ typings install --global --save dt~pouchdb dt~pouchdb-adapter-websql dt~pouchdb-browser dt~pouchdb-core dt~pouchdb-http dt~pouchdb-mapreduce dt~pouchdb-node dt~pouchdb-replication
+    

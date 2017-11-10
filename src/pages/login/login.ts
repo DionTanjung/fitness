@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, ModalController , NavParams } from 'ionic-angular';
 import { ModalContentPage } from './modal';
-import { CouchbaseLite } from '@ionic-native/couchbase-lite';
+import { DatabaseProvider } from '../../providers/database/database';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -17,29 +18,24 @@ import { CouchbaseLite } from '@ionic-native/couchbase-lite';
 })
 export class LoginPage {
   form : FormGroup;
-  url:string;
 
-  constructor(private couchbase: CouchbaseLite, public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,  public formBuilder: FormBuilder) {
+
+  constructor(private db:DatabaseProvider, public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,  public formBuilder: FormBuilder) {
     this.form = formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')])],
       password: ['', Validators.compose([Validators.required])]
     });
-    this.initMethod();
+
   }
 
-  initMethod() {
-     this.couchbase.getURL().then((url)=> {
-       console.log(url);
-         this.url = url;
-     })
-  }
-  getUrl() {
-       return this.url;
-  }
+ 
 
   loginForm(value:any){
     if(this.form.valid) {
-      console.log(value);
+      let tableName = 'userAccount'
+      let query = 'INSERT INTO userAccount(username,password) VALUES(?,?)';
+      let values = [value.username,value.password];
+      this.db.addItem(query,values,tableName);
     }
     this.navCtrl.push('HomePage');
   }

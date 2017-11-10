@@ -7,10 +7,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { DatabaseProvider } from '../providers/database/database';
 import { ModalContentPage } from '../pages/login/modal';
 import { ModalWorkOutPage } from '../pages/workout/modal';
-
-import { CouchbaseLite } from '@ionic-native/couchbase-lite';
+import { SQLite } from '@ionic-native/sqlite';
+import { SQLitePorter } from '@ionic-native/sqlite-porter';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { CouchbaseLite } from '@ionic-native/couchbase-lite';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -35,7 +38,9 @@ import { CouchbaseLite } from '@ionic-native/couchbase-lite';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    CouchbaseLite
+    SQLite,
+    SQLitePorter,
+    DatabaseProvider
   ]
 })
 export class AppModule {}
