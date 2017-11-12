@@ -22,36 +22,65 @@ export class DatabaseProvider {
         location: 'default'
       })
         .then((db: SQLiteObject) => {
-          db.executeSql('CREATE TABLE IF NOT EXISTS userAccount(CREATE TABLE IF NOT EXISTS userAccount(id Integer NOT NULL PRIMARY KEY AUTO_INCREMENT, username CHAR(30),password CHAR(10)))', {})
-          .then(() => console.log('Executed SQL'))
-          .catch(e => console.log(e));
-    
+          this.database=db;    
         });
     });
 
   }
 
+  public createTable(Query){
+    return  this.database.executeSql(Query, {})
+    .then((r) => {return r
+    },(e)=>{
+      return e;
+    })
+  }
+
   public getDB(tableName){
     let data = [];
-    this.database.executeSql('SELECT * FROM '+tableName,[]).then((r)=>{
+    return this.database.executeSql('SELECT * FROM '+tableName,[]).then((r)=>{
       if(r.rows.length > 0){
         for(var i=0;i < r.rows.length;i++){
           data.push(r.rows.item(i));
         }
       }
-      console.log(data);
+      return data;
     },(e)=>{
-      console.log('Error' + JSON.stringify(e));
+      return e;
     });
   }
 
-  public addItem(query,values,tableName) {
-    this.database.executeSql(query,values).then((data) => {
-        console.log("Success");
-        this.getDB(tableName);
-    }, (e) => {
-        console.log("Error :  " + JSON.stringify(e.err));
+  public searchDB(Query){
+    let data=[];
+    return this.database.executeSql(Query,[]).then((r)=>{
+      console.log(r);
+      if (r.rows.length >0){
+        for (var i=0;i<r.rows.length;i++){
+          data.push(r.rows.item(i));
+        }
+      }else{
+        data=null;
+      }
+      return data;
+    },(e)=>{
+      return e;
+    })
+  }
+
+  public addItem(query,values) {
+     return this.database.executeSql(query,values).then((data) => { 
+        return data;
+      }, (e) => {
+        return e;
     });
-}
+  }
+
+  public clearDB(query){
+    return this.database.executeSql(query,[]).then((r)=>{
+      return r;
+    },(e)=>{
+      return e;
+    });
+  }
 
 }

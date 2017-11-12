@@ -79,6 +79,7 @@
     </platform>
     <allow-navigation href="http://192.168.56.1:8100" />
     <allow-navigation href="http://192.168.10.8:8100" />
+    <allow-navigation href="http://192.168.0.18:8100" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="cordova-sqlite-storage" spec="^2.1.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />

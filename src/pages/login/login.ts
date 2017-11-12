@@ -32,12 +32,28 @@ export class LoginPage {
 
   loginForm(value:any){
     if(this.form.valid) {
-      let tableName = 'userAccount'
-      let query = 'INSERT INTO userAccount(username,password) VALUES(?,?)';
-      let values = [value.username,value.password];
-      this.db.addItem(query,values,tableName);
+      let searchQuery = 'SELECT * FROM userAccount WHERE username="'+value.username+'"';
+      this.db.searchDB(searchQuery).then((r)=>{
+        if(r!=null){
+          if(r.password==value.password){
+            this.navCtrl.push('HomePage');                
+          }
+          // let query='DROP TABLE userAccount';
+          // this.db.clearDB(query).then((r)=>{
+          //   console.log('deleted');
+          // })
+        }
+        this.db.getDB('userAccount').then((f)=>{
+          console.log(f);
+        })
+        this.db.getDB('userProfile').then((f)=>{
+          console.log(f);
+        })
+      },(e)=>{
+        console.log('Error' + JSON.stringify(e));
+      })
+
     }
-    this.navCtrl.push('HomePage');
   }
 
   ionViewDidLoad() {
