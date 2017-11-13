@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ViewController } from 'ionic-angular';
+import {ViewController, AlertController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 
@@ -45,7 +45,7 @@ import { DatabaseProvider } from '../../providers/database/database';
             </ion-item>
             <ion-item>
                 <ion-label floating>Date of birth</ion-label>
-                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="born"></ion-datetime>
+                <ion-datetime displayFormat="DD/MMMM/YYYY" formControlName="born"></ion-datetime>
             </ion-item>
             <ion-item>
                 <ion-label floating>Address</ion-label>
@@ -68,7 +68,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 export class ModalContentPage {
     user: FormGroup;
   
-    constructor(private db:DatabaseProvider, public viewCtrl: ViewController, public formBuilder: FormBuilder) {
+    constructor(private alertCtrl: AlertController, private db:DatabaseProvider, public viewCtrl: ViewController, public formBuilder: FormBuilder) {
         this.user = formBuilder.group({
             username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')])],
             password: ['', Validators.compose([Validators.required])],
@@ -102,6 +102,8 @@ export class ModalContentPage {
                     }
                  });
             });   
+            this.presentAlert();
+            this.viewCtrl.dismiss();
         }
     }
 
@@ -117,4 +119,13 @@ export class ModalContentPage {
             })
         });
     }
+
+    presentAlert() {
+        let alert = this.alertCtrl.create({
+          title: 'Success',
+          subTitle: 'Your account have been created',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+      }
   }

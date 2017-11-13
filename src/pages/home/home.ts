@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage,NavController,NavParams } from 'ionic-angular';
+import { IonicPage,NavController,NavParams,PopoverController} from 'ionic-angular';
+import { homePopover } from './popover';
 
 @IonicPage()
 @Component({
@@ -8,7 +9,7 @@ import { IonicPage,NavController,NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private popoverCtrl: PopoverController) {
     
   }
 
@@ -24,6 +25,13 @@ export class HomePage {
       this.navCtrl.push('ReportPage');
       
     }
+  }
+
+  openPopover(event){
+    let p = this.popoverCtrl.create(homePopover);
+    p.present({
+      ev:event
+    });
   }
 
 }

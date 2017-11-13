@@ -14,6 +14,7 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter';
 @Injectable()
 export class DatabaseProvider {
   database: SQLiteObject;
+
   constructor(private platform: Platform, private sqlite: SQLite, public sqlitePorter: SQLitePorter,public http: Http) {
     console.log('Hello DatabaseProvider Provider');
     platform.ready().then(() => {
@@ -21,12 +22,14 @@ export class DatabaseProvider {
         name: 'fitness.db',
         location: 'default'
       })
-        .then((db: SQLiteObject) => {
-          this.database=db;    
+        .then((database: SQLiteObject) => {
+          this.database=database;    
         });
     });
 
+
   }
+
 
   public createTable(Query){
     return  this.database.executeSql(Query, {})
@@ -35,6 +38,7 @@ export class DatabaseProvider {
       return e;
     })
   }
+
 
   public getDB(tableName){
     let data = [];

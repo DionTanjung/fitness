@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
+import { homePopover } from '../pages/home/popover';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { DatabaseProvider } from '../providers/database/database';
 import { ModalContentPage } from '../pages/login/modal';
@@ -13,25 +15,31 @@ import { ModalWorkOutPage } from '../pages/workout/modal';
 import { SQLite } from '@ionic-native/sqlite';
 import { SQLitePorter } from '@ionic-native/sqlite-porter';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
+    HomePage,
     ModalContentPage,
-    ModalWorkOutPage
+    ModalWorkOutPage,
+    homePopover
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
+    HomePage,
     ModalContentPage,
-    ModalWorkOutPage
+    ModalWorkOutPage,
+    homePopover
   ],
   providers: [
     StatusBar,
